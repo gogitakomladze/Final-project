@@ -1,1 +1,0 @@
-export { NewPupilModal } from "./NewPupilModal";

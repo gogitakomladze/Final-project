@@ -1,11 +1,13 @@
-import { SApp } from "./App.styled";
-import { Header } from "./features/Header";
-
+import { Home } from "./view/Home";
+import { MainLayout } from "./layouts/MainLayout";
+import { Routes ,Route } from "react-router-dom"; 
 function App() {
   return (
-    <SApp>
-      <Header />
-    </SApp>
+    <Routes>
+      <Route element={<MainLayout/>}>
+      <Route path="/" element={<Home/>}></Route>
+      </Route>
+    </Routes>
   );
 }
 
