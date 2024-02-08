@@ -1,5 +1,4 @@
-# Starter Kit #1
-ყველაზე მარტივი და ზოგადი codebase ფინალური პროექტის დასაწყებად
+
 
 ## Technologies Used
 
