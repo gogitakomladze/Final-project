@@ -15,9 +15,9 @@ export function SignInModal( { onCancel }: SignInModalProps ){
         footer={ <Button form="signIn" type='primary' htmlType='submit'>შესვლა</Button>}
         >
 
-            <Form name="signIn" className="mt-3"   autoComplete="off">
+    <Form name="signIn" className="mt-3"   autoComplete="off">
     <Form.Item
-      label="Username"
+      label="იმეილი"
       name="username"
       rules={[{ required: true, message: 'Please input your username!' }]}
     >
@@ -25,7 +25,7 @@ export function SignInModal( { onCancel }: SignInModalProps ){
     </Form.Item>
 
     <Form.Item
-      label="Password"
+      label="პაროლი"
       name="password"
       rules={[{ required: true, message: 'Please input your password!' }]}
     >
