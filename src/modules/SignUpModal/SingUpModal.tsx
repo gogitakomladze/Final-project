@@ -2,6 +2,7 @@ import { Modal, Form, Input, Button } from "antd";
 import { publicAxios } from "../../utils/publicAxios";
 import { useAuthProvider } from "../../provider/AuthProvider";
 import { TAuthRequest } from "../../@types/requestTypes";
+import { useState } from "react";
 
 type SingUpModalProps = {
     onCancel: () => void;
@@ -19,7 +20,10 @@ export type SingUpFormValue = {
 
 export function SignUpModal( { onCancel }: SingUpModalProps ){
    const [form] = Form.useForm();
+   const [authLoading,setAuthLoading]= useState(false);
    const { setAuthData } = useAuthProvider();
+
+
  async function onFinish(values: SingUpFormValue) {
     if (values.password !== values['repeat-password']){
       form.setFields([
@@ -29,8 +33,17 @@ export function SignUpModal( { onCancel }: SingUpModalProps ){
       ]);
       return;
     }
+
+    try {
+      setAuthLoading(true);
       const response = await publicAxios.post("/auth/register", values);
       setAuthData(response.data as TAuthRequest);
+    }catch (error) {
+
+    }finally {
+      setAuthLoading(false);
+    }
+      
     }
 
     return (
@@ -40,7 +53,12 @@ export function SignUpModal( { onCancel }: SingUpModalProps ){
         onCancel={onCancel} 
         open={true}
         footer={ 
-        <Button form="signup" type='primary' htmlType='submit'>
+          <Button 
+            loading={authLoading} 
+            form="signup" 
+            type='primary' 
+            htmlType='submit'
+          >
           რეგისტრაცია
           </Button>
           }

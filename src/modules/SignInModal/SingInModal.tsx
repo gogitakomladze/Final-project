@@ -1,24 +1,55 @@
+import { Modal, Form, Input, Button, Alert } from "antd";
+import { TAuthRequest } from "../../@types/requestTypes"; 
+import { publicAxios } from "../../utils/publicAxios";
+import { useAuthProvider } from "../../provider/AuthProvider";
+import { useState } from "react";
 
-import { Modal, Form, Input, Button } from "antd";
 
 type SignInModalProps = {
     onCancel: () => void;
 };
 
+export type SingInFormValue = {
+  email: string;
+  password: string;
+}
+
 export function SignInModal( { onCancel }: SignInModalProps ){
+  const [authLoading, setAuthLoading] = useState(false);
+  const [authError, setAuthError] = useState<boolean>();
+   const { setAuthData } = useAuthProvider();
+  async function onFinish(values: SingInFormValue) {
+    try {
+      setAuthLoading(true);
+      const response = await publicAxios.post("/auth/login", values);
+      setAuthData(response.data as TAuthRequest);
+      setAuthLoading(false);
+      onCancel();
+    }catch (error) {
+    setAuthError(true);
+    }finally {
+      setAuthLoading(false);
+    }
+    }
+
     return (
         <Modal 
         title='შესვლა' 
         centered={true} 
         onCancel={onCancel} 
         open={true}
-        footer={ <Button form="signIn" type='primary' htmlType='submit'>შესვლა</Button>}
+        footer={ <Button loading={authLoading} form="signIn" type='primary' htmlType='submit'>შესვლა</Button>}
         >
 
-    <Form name="signIn" className="mt-3"   autoComplete="off">
+    <Form<SingInFormValue>
+     onFinish = {onFinish}
+     name="signIn" 
+     className="mt-3"  
+     autoComplete="off"
+     >
     <Form.Item
       label="იმეილი"
-      name="username"
+      name="email"
       rules={[{ required: true, message: 'Please input your username!' }]}
     >
       <Input />
@@ -31,6 +62,11 @@ export function SignInModal( { onCancel }: SignInModalProps ){
     >
       <Input.Password />
     </Form.Item>
+    {authError && 
+    <Alert className="mt-3"
+    type="error"
+    message="მომხმარების მეილი ანა პაროლი არასწორია"
+    />}
  </Form>
   </Modal>
     );
