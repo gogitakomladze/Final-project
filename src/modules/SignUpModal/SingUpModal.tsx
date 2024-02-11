@@ -1,5 +1,7 @@
 import { Modal, Form, Input, Button } from "antd";
-import { useSignUpModal } from "./hook/useSignUpModal";
+import { publicAxios } from "../../utils/publicAxios";
+import { useAuthProvider } from "../../provider/AuthProvider";
+import { TAuthRequest } from "../../@types/requestTypes";
 
 type SingUpModalProps = {
     onCancel: () => void;
@@ -17,8 +19,7 @@ export type SingUpFormValue = {
 
 export function SignUpModal( { onCancel }: SingUpModalProps ){
    const [form] = Form.useForm();
-  const { signUpUser } = useSignUpModal();
-
+   const { setAuthData } = useAuthProvider();
  async function onFinish(values: SingUpFormValue) {
     if (values.password !== values['repeat-password']){
       form.setFields([
@@ -28,8 +29,9 @@ export function SignUpModal( { onCancel }: SingUpModalProps ){
       ]);
       return;
     }
-    await signUpUser(values);
-  }
+      const response = await publicAxios.post("/auth/register", values);
+      setAuthData(response.data as TAuthRequest);
+    }
 
     return (
         <Modal 
