@@ -1,9 +1,11 @@
 import { jwtDecode } from "jwt-decode";
-import { PropsWithChildren, useState } from "react";
+import { PropsWithChildren, useEffect, useState } from "react";
 import { AuthContext, TAuthorizationStage_Enum } from "./AuthContext";
 import { TAuthRequest, TUserRequest } from "../../@types/requestTypes";
 import { setPrivateAccessToken } from "../../utils/privateAxios"; 
+import { publicAxios } from "../../utils/publicAxios";
 import { ACCESS_TOKEN, REFRESH_TOKEN } from "../../config/localStorageKeys";
+
 
 export function AuthProvider({ children }: PropsWithChildren){
     const [userData, setUserData] = useState<TUserRequest>();
@@ -11,10 +13,10 @@ export function AuthProvider({ children }: PropsWithChildren){
         TAuthorizationStage_Enum.UNAUTHORIZED
     );
 
- console.log(userData)
+
  function setAuthData(tokens:  TAuthRequest ) {
-    const useData: TUserRequest = jwtDecode(tokens.access_token);
-    setUserData(useData);
+    const tokenData: TUserRequest = jwtDecode(tokens.access_token);
+    setUserData(tokenData);
     localStorage.setItem(ACCESS_TOKEN, tokens.access_token);
     localStorage.setItem(REFRESH_TOKEN, tokens.refresh_token);
     setPrivateAccessToken(tokens.access_token);
@@ -22,10 +24,38 @@ export function AuthProvider({ children }: PropsWithChildren){
 
 }
 
+async function getNewAccessToken(refreshToken: string) {
+    try {
+        const response = await publicAxios.post<TAuthRequest>(
+            "/auth/update-tokens",
+            { refresh_token: refreshToken }
+            );
+            setAuthData(response.data)
+    }catch (error) {
+        logaut();
+    }
+}
+
+function logaut() {
+    localStorage.removeItem(ACCESS_TOKEN);
+    localStorage.removeItem(REFRESH_TOKEN);
+    setUserData(undefined);
+    setAuthStage(TAuthorizationStage_Enum.UNAUTHORIZED);
+    setPrivateAccessToken("");
+}
+
+useEffect(() => {
+    const refreshToken = localStorage.getItem(REFRESH_TOKEN);
+    
+ if (refreshToken) getNewAccessToken(refreshToken);
+}, []);
+
     return (
     <AuthContext.Provider 
     value={{
+        userData,
         authStage,
+        logaut,
         setAuthStage,
         setAuthData,
     }}
