@@ -23,6 +23,7 @@ export function LayoutHeader() {
    <Popover
     content={ 
       <div className="flex flex-col gap-3">
+         <Button onClick={() => navigate("/orders")}>შეკვეთები</Button>
          <Button type='primary' onClick={() => navigate("/profile")}>პროფილი</Button>
          <Button onClick={logaut}>გამოსვლა</Button>
     </div>
