@@ -38,7 +38,12 @@ export function SignInModal( { onCancel }: SignInModalProps ){
         centered={true} 
         onCancel={onCancel} 
         open={true}
-        footer={ <Button loading={authLoading} form="signIn" type='primary' htmlType='submit'>შესვლა</Button>}
+        footer={ <Button
+           loading={authLoading}  
+         className="bg-black"
+         form="signIn" 
+         type='primary' 
+         htmlType='submit'>შესვლა</Button>}
         >
 
     <Form<SingInFormValue>

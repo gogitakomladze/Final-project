@@ -1,7 +1,9 @@
 import { useState, useMemo } from "react";
 import { useNavigate } from "react-router-dom";
-import { Button, Space, Avatar, Popover } from "antd";
-import Logo from "../../assets/images/logo.svg";
+import { Button, Space, Avatar, Popover, Input } from "antd";
+import logoo from "../../assets/images/logoo.png";
+import { THeder } from "./Heder.styled";
+import { FiShoppingCart } from "react-icons/fi";
 
 import { SignInModal } from "@src/modules/SignInModal"; 
 import { SignUpModal } from "@src/modules/SignUpModal";
@@ -20,6 +22,8 @@ export function LayoutHeader() {
    const AuthorizedView = useMemo(
    () => (
 <div>
+   
+   <Button className="mr-5 rounded-md  " ><FiShoppingCart/></Button>
    <Popover
     content={ 
       <div className="flex flex-col gap-3">
@@ -41,7 +45,7 @@ export function LayoutHeader() {
 const UnauthorizedView = useMemo(() =>(
    <div>
    <Space>
-        <Button type='primary' onClick={() => setShowSignIn(true)}>შესვლა</Button>
+        <Button  className="bg-black" type='primary' onClick={() => setShowSignIn(true)}>შესვლა</Button>
         <Button onClick={() => setShowSignUp(true)}> რეგისტრაცია</Button>
   </Space>
   </div>
@@ -49,9 +53,11 @@ const UnauthorizedView = useMemo(() =>(
 
 
     return(
-     <div className=" p-3 bg-slate-500 flex justify-between "> 
-     <img src={Logo} />
-
+     <THeder className="p-3 bg-transparent flex justify-between "> 
+        <div>
+         <img className="rounded-md	w-11 h-10 " src={logoo} />
+         <Input  placeholder="ძებნა"/>
+        </div>
           {authStage === TAuthorizationStage_Enum.AUTHORIZED 
           ?  AuthorizedView
           : UnauthorizedView
@@ -59,8 +65,7 @@ const UnauthorizedView = useMemo(() =>(
          
         {showSignIn && <SignInModal onCancel={() => setShowSignIn(false)}/>}
         {showSignUp && <SignUpModal onCancel={() => setShowSignUp(false)}/>}
+   </THeder>
 
-
-     </div>
     );
 }

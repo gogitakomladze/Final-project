@@ -58,6 +58,7 @@ export function SignUpModal( { onCancel }: SingUpModalProps ){
             form="signup" 
             type='primary' 
             htmlType='submit'
+            className="bg-black"
           >
           რეგისტრაცია
           </Button>
