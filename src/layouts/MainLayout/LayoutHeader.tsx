@@ -26,10 +26,12 @@ export function LayoutHeader() {
    <Button className="mr-5 rounded-md  " ><FiShoppingCart/></Button>
    <Popover
     content={ 
-      <div className="flex flex-col gap-3">
+      <div className=" gap-3">
+
+           <div className=" mb-10"><h3 className="mr-2">გამარჯობა,</h3> <h4>{(userData?.first_name || "") + "  " + (userData?.last_name || "")}</h4></div>
          <Button onClick={() => navigate("/orders")}>შეკვეთები</Button>
-         <Button type='primary' onClick={() => navigate("/profile")}>პროფილი</Button>
-         <Button onClick={logaut}>გამოსვლა</Button>
+         <Button className="ml-2 bg-black" type='primary' onClick={() => navigate("/profile")}>პროფილი</Button>
+         <Button className="ml-2" onClick={logaut}>გამოსვლა</Button>
     </div>
    }>
       <Avatar>
@@ -55,7 +57,7 @@ const UnauthorizedView = useMemo(() =>(
     return(
      <THeder className="p-3 bg-transparent flex justify-between "> 
         <div>
-         <img className="rounded-md	w-11 h-10 " src={logoo} />
+         <img className="rounded-md	w-11 h-10 " src={logoo} onClick={() => navigate("/")}/>
          <Input  placeholder="ძებნა"/>
         </div>
           {authStage === TAuthorizationStage_Enum.AUTHORIZED 
