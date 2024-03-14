@@ -2,6 +2,13 @@ export type TAuthRequest = {
     access_token: string;
     refresh_token:string;
 }
+export type TCategori = {
+  id: string,
+  created_at:string,
+  updated_at:string,
+  name: string,
+  image: string
+}
 
 export type TUserRequest = {
   email: string,

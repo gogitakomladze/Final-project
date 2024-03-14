@@ -1,18 +1,25 @@
-import { useAuthProvider } from "../../provider/AuthProvider"
-import { TMargin } from "./Home.styled";
+import { Tpage } from "./Home.styled";
 import { Navigation } from "../../components/Navigate";
+import { Products } from "../../components/Products";
+
+import { Pagination } from 'antd';
+
+
+
 export function Home() {
-    const { userData } = useAuthProvider();
-    
+   
+    const  App: React.FC = () => <Pagination defaultCurrent={1} total={50} />;
+
     return (
-        
-        <TMargin> 
+        <>
          <Navigation />
-            <h1>Hello World</h1>
-    <div>{(userData?.first_name || "") + "  " + (userData?.last_name || "")}</div>
-  
-        </TMargin> 
-  
+        <Products/>
+       
+        
+        <Tpage>
+            <App/>
+        </Tpage> 
+        </>
     )
     
 }

@@ -1,5 +1,6 @@
 import { TFooter, TtowFooter,} from "./Footer.styled"
 import { Input , Button} from "antd"
+// import { TContentspacer } from "@src/assets/contentsp.styled"
 export function Footer() {
     return (
         <> 

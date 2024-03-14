@@ -20,6 +20,8 @@ export function Navigation() {
       getCategories();
     }, []);
     console.log(categories)
+
+    
     return (
         <div>
             {categories.map((categori: categoritype) => {
