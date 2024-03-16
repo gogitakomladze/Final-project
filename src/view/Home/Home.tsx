@@ -1,6 +1,6 @@
 import { Tpage } from "./Home.styled";
-import { Navigation } from "../../components/Navigate";
 import { Products } from "../../components/Products";
+import { Categori } from "@src/components/Navigate";
 
 import { Pagination } from 'antd';
 
@@ -12,7 +12,7 @@ export function Home() {
 
     return (
         <>
-         <Navigation />
+         <Categori />
         <Products/>
        
         

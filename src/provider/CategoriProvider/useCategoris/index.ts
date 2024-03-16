@@ -1,1 +1,0 @@
-export { useCategori } from "./useCategoris";
