@@ -11,6 +11,7 @@ import { SignUpModal } from "@src/modules/SignUpModal";
 import { useAuthProvider } from "../../provider/AuthProvider";
 import { TAuthorizationStage_Enum } from "@src/provider/AuthProvider/AuthContext";
 import { composeAvatarName } from "../../utils/composeAvatarName";
+import { Translate } from "@src/components/Translate";
 
 export function LayoutHeader() {
    const {authStage, userData, logaut} = useAuthProvider();
@@ -55,6 +56,8 @@ const UnauthorizedView = useMemo(() =>(
 
 
     return(
+      <>
+      <Translate></Translate>
      <THeder className="p-3 bg-transparent flex justify-between "> 
         <div>
          <img className="rounded-md	w-11 h-10 " src={logoo} onClick={() => navigate("/")}/>
@@ -68,6 +71,6 @@ const UnauthorizedView = useMemo(() =>(
         {showSignIn && <SignInModal onCancel={() => setShowSignIn(false)}/>}
         {showSignUp && <SignUpModal onCancel={() => setShowSignUp(false)}/>}
    </THeder>
-
+    </>
     );
 }
