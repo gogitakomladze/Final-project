@@ -1,34 +1,28 @@
-import axios from "axios"
-import { useState, useEffect } from "react"
+import { useGetProducts } from "@src/hooks/useGetProduct/useGetProduct";
 import {TProduct} from "../../components/Products/product.styled"
+import { useNavigate } from "react-router-dom";
+import { useContext } from "react";
+import { GlobalContext } from "@src/provider/GlobalProvider";
 
 export function Products() {
- 
-    type producttype = {
-        id: string,
-        title: string,
-        description: string,
-        image: string,
-        price: number
-    }
+    const {products, } = useGetProducts();
+    const {
+        setProductId
+    } = useContext(GlobalContext)
+    const navigate = useNavigate();
 
-   const [products, setProducts] = useState([]);
-
-   async function getProducts() {
-    const resp = await axios.get("http://localhost:3000/product?page=1&pageSize=20");
-    setProducts(resp.data.products);
-   }
-   useEffect(() => {
-    getProducts();
-   }, [])
-
-   
    return (
     <TProduct >
-        {products.map((product: producttype) => {
+        {products?.map((product) => {
             return (
 
-                <div key={product. id}>
+                <div 
+                key={product.id}
+                onClick={() => {
+                    setProductId(product.id);
+                    navigate(`/products/${product.id}`)
+                }}
+                >
                     
                     <img src={product.image} /> 
                     <p>{product.price} ₾</p>

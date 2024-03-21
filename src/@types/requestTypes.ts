@@ -9,6 +9,15 @@ export type TCategori = {
   name: string,
   image: string
 }
+export type producttype = {
+  id:string,
+  title: string,  
+  category_name: string,
+  description: string,
+  image: string,
+  price: number,
+  salePrice: null
+}
 
 export type TUserRequest = {
   email: string,

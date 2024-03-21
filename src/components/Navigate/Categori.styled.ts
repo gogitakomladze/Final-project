@@ -13,7 +13,7 @@ export const TNavigateCategori = styled.div`
       background-color: rgb(234, 234, 234);
       border: none;
       width: 150px;
-      height: 200px;
+      height: 100px;
       text-align: center;
       display: flex;
       justify-content: center;

@@ -1,0 +1,1 @@
+export { Photovideo } from "./Photovideo";

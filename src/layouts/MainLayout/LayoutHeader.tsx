@@ -2,7 +2,7 @@ import { useState, useMemo } from "react";
 import { useNavigate } from "react-router-dom";
 import { Button, Space, Avatar, Popover, Input } from "antd";
 import logoo from "../../assets/images/logoo.png";
-import { THeder } from "./Heder.styled";
+import { THeder,NTranslate } from "./Heder.styled";
 import { FiShoppingCart } from "react-icons/fi";
 
 import { SignInModal } from "@src/modules/SignInModal"; 
@@ -57,7 +57,9 @@ const UnauthorizedView = useMemo(() =>(
 
     return(
       <>
+     <NTranslate>
       <Translate></Translate>
+      </NTranslate>
      <THeder className="p-3 bg-transparent flex justify-between "> 
         <div>
          <img className="rounded-md	w-11 h-10 " src={logoo} onClick={() => navigate("/")}/>
@@ -71,6 +73,7 @@ const UnauthorizedView = useMemo(() =>(
         {showSignIn && <SignInModal onCancel={() => setShowSignIn(false)}/>}
         {showSignUp && <SignUpModal onCancel={() => setShowSignUp(false)}/>}
    </THeder>
+    
     </>
     );
 }

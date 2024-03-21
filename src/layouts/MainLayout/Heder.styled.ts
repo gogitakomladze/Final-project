@@ -16,3 +16,10 @@ input{
   width: 500px;
 }
 `
+
+export const NTranslate = styled.div`
+background-color: black;
+display: flex;
+justify-content: end;
+
+`
