@@ -3,12 +3,18 @@ import styled from "styled-components";
 
 export const TNavigateCategori = styled.div`
      display: grid;
-     grid-template-columns: auto auto auto auto auto auto auto;
+     grid-template-columns: auto auto auto auto auto auto auto auto;
 
-    width: 1270px;
+    width: 1400px;
     margin: auto;
     padding: 80px 0;
-    
+
+    #Allbutton{
+      background-color: black;
+      h3{
+        color: white;
+      }
+    }
     button {
       background-color: rgb(234, 234, 234);
       border: none;

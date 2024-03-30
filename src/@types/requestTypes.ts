@@ -11,12 +11,14 @@ export type TCategori = {
 }
 export type producttype = {
   id:string,
+  created_at: string,
+  updated_at: string,
   title: string,  
   category_name: string,
   description: string,
   image: string,
   price: number,
-  salePrice: null
+  salePrice: number
 }
 
 export type TUserRequest = {
@@ -25,4 +27,12 @@ export type TUserRequest = {
   first_name: string,
   last_name: string,
   phone_number:null | string,
+}
+
+export interface TCartProducts {
+  cartProduct: producttype;
+  count: number;
+  id: string;
+  product_id: string;
+  user_id: string;
 }

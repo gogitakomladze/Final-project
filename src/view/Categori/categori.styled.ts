@@ -1,17 +1,24 @@
 import styled from "styled-components";
 
-export const TProduct = styled.section`
+export const TCategoristyled = styled.div`
  width: 1280px;
   margin: auto;
   padding: 80px 0;
-  
+
 display: grid;
 grid-template-columns: auto auto auto auto;
 gap: 30px;
 row-gap: 50px;
+
+  
+
+div{
+cursor: pointer;
+
+    
 img {
-    width: 300px ;
-    height: 300px;
+    width: 400px ;
+    height: 400px;
 }
 h1{
     font-size: 12px;
@@ -21,9 +28,7 @@ h1{
 p{
     font-size: 20px;
     text-align: center;
-    
 }
-div{
-    cursor: pointer;
+    
 }
 `

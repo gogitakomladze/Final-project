@@ -5,6 +5,8 @@ import { useGlobalProvider } from "@src/provider/GlobalProvider/useGlobalProvide
 export function useGetCategoris() {
     const { categoriname, setCategoriName } = useGlobalProvider();
 
+   
+
     async function getCategori() {
         try {
             const resp = await publicAxios.get("/product-category");
@@ -13,8 +15,11 @@ export function useGetCategoris() {
             console.error("Categori fetch error", error);
         }
     } 
+
     useEffect(() => {
         getCategori();
     }, []);
+
+    
     return {categoriname}
 }

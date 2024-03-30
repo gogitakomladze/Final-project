@@ -4,8 +4,10 @@ import { Orders } from "./view/Orders";
 import { MainLayout } from "./layouts/MainLayout";
 import { Routes ,Route } from "react-router-dom"; 
 import { PrivateChild } from "./modules/PrivateRoute";
+import { CartPage } from "./view/CartPage";
 
-import { Smartphone } from "./view/Categori/Smarphone";
+
+import { Smartphon } from "./view/Categori/Smarphone";
 import { Photovideo } from "./view/Categori/Photovideo";
 import { Gaming } from "./view/Categori/Gaming";
 import { Laptop } from "./view/Categori/Laptop";
@@ -21,19 +23,23 @@ function App() {
  
   return (
     <Routes>
-
+ 
       <Route element={<MainLayout/>}>
       <Route path="/" element={<Home/>}></Route>
-
-      <Route
+     <Route
       path="/profile"
       element={<PrivateChild children={<Profile />} />}
+      />
+     
+      <Route
+        path="/CartPage"
+      element={<PrivateChild children={<CartPage/>} />}
       />
       <Route
         path="/Orders"
       element={<PrivateChild children={<Orders/>} />}
       />
-      <Route path="/Smartphone" element = {<Smartphone/>}/>
+      <Route path="/Smartphone" element = {<Smartphon/>}/>
       <Route path="/Photovideo" element ={ <Photovideo/>} />
       <Route path="/Gaming" element ={ <Gaming/>} />
       <Route path="/Laptop" element ={ <Laptop/>} />

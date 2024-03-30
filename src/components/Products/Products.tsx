@@ -3,14 +3,21 @@ import {TProduct} from "../../components/Products/product.styled"
 import { useNavigate } from "react-router-dom";
 import { useContext } from "react";
 import { GlobalContext } from "@src/provider/GlobalProvider";
+import { LoadingOutlined} from '@ant-design/icons';
+
+
 
 export function Products() {
-    const {products, } = useGetProducts();
+    const {products } = useGetProducts();
     const {
-        setProductId
-    } = useContext(GlobalContext)
+        setProductId,
+        loading,
+        setLoading,
+    } = useContext(GlobalContext);
     const navigate = useNavigate();
-
+    if (loading) {
+        return <div id="loading"><LoadingOutlined/></div>;
+      }
    return (
     <TProduct >
         {products?.map((product) => {
@@ -20,7 +27,8 @@ export function Products() {
                 key={product.id}
                 onClick={() => {
                     setProductId(product.id);
-                    navigate(`/products/${product.id}`)
+                    navigate(`/products/${product.id}`);
+                    setLoading(true);
                 }}
                 >
                     

@@ -9,4 +9,21 @@
     font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
 }
 
+#loading{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  
+  height: 500px;
+
+  font-size: 50px;
+}
+#categoriTitle{
+  display: flex;
+  justify-content: center;
+}
+#allproductbutton{
+  
+}
+
  

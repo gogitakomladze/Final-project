@@ -8,7 +8,11 @@ const {categoriname} = useGetCategoris();
 const navigate = useNavigate();
 
     return(
-        <TNavigateCategori>
+        <><TNavigateCategori>
+        <button id="Allbutton" onClick={() => {navigate("./products")}}><h3>პროდუქტები</h3></button>
+
+
+        
             {categoriname?.map((category) => {
                 return(
                     <div key={category.id}
@@ -36,6 +40,6 @@ const navigate = useNavigate();
                 )
             })}
         </TNavigateCategori>
-
+        </>
     )
 }

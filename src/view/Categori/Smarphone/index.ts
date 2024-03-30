@@ -1,1 +1,1 @@
-export { Smartphone } from "./Smartphone";
+export { Smartphon } from "./Smartphone";

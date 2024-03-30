@@ -6,6 +6,7 @@ export function MainLayout() {
     return (
     <div>
     <LayoutHeader/>
+       <Categori/>
         <Outlet/>
         <Footer/>
     </div>

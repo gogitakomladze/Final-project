@@ -24,7 +24,7 @@ export function LayoutHeader() {
    () => (
 <div>
    
-   <Button className="mr-5 rounded-md  " ><FiShoppingCart/></Button>
+   <Button className="mr-5 rounded-md " onClick={() => navigate("./CartPage")} ><FiShoppingCart/></Button>
    <Popover
     content={ 
       <div className=" gap-3">
