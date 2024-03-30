@@ -15,6 +15,9 @@ div{
 input{
   width: 500px;
 }
+
+
+
 `
 
 export const NTranslate = styled.div`

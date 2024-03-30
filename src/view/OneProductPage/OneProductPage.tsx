@@ -5,13 +5,13 @@ import { useParams, useNavigate } from "react-router-dom"
 import { FiShoppingCart } from "react-icons/fi";
 
 import cartPostRequest from "@src/utils/CartPostRequest";
+import LikePostRequest from "@src/utils/LikePostRequest";
 
 import { publicAxios } from "@src/utils/publicAxios"
 
 import { producttype } from "@src/@types/requestTypes"
 
 import {HeartOutlined, LoadingOutlined} from '@ant-design/icons';
-import { ColorFactory } from "antd/es/color-picker/color"
 
 import { TOneProduct, TshopCard } from "./OneProductPage.styled"
 export  function OneProductPage() {
@@ -22,6 +22,8 @@ export  function OneProductPage() {
         setProducts,
         loading,
         setLoading,
+        countLikeProducts,
+        setCountLikeProducts,
         countCartProducts,
         setCountCartProducts,
     } = useContext(GlobalContext);
@@ -36,7 +38,9 @@ export  function OneProductPage() {
       ); 
 
       const [cartAdded, setCartAdded] = useState<boolean>(false);
-    const {id} = useParams();
+      const [likeAdded, setLikeAdded] = useState<boolean>(false);
+
+      const {id} = useParams();
 
     const token = localStorage.getItem("access_token");
 
@@ -67,7 +71,6 @@ export  function OneProductPage() {
             setLoading(false);
         }
     }
-console.log(countCartProducts);
     useEffect(() => {
         if (id) {
             getOneProduct();
@@ -81,6 +84,15 @@ console.log(countCartProducts);
             setCountCartProducts(countCartProducts + 1);
         } catch (error) {
             console.log("error Loading Cart", error)
+        }
+      }
+      
+      async function addToLike() {
+        try{
+            await LikePostRequest(productId, token);
+            setCountLikeProducts(countLikeProducts + 1);
+        }catch (error) {
+            console.log("error loading like", error)
         }
       }
 
@@ -104,7 +116,16 @@ console.log(countCartProducts);
                 <a >პროდუქტებში გადასვლა</a>
                 </div>
            
-           <button id="LikeButton"><HeartOutlined/></button>
+           <button id="LikeButton" 
+            onClick={() => {
+                addToLike();
+                setLoader(true);
+                setTimeout(() => {
+                    setLikeAdded(true);
+                    setLoader(false);
+                }, 1000)
+             }}
+           ><HeartOutlined/></button>
         </div>
         <div className="flex justify-between mt-10"> 
             <h1>{oneProduct?.title}</h1>

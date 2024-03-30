@@ -22,8 +22,43 @@
   display: flex;
   justify-content: center;
 }
-#allproductbutton{
-  
+#LikeButtonn{
+  margin-right: 30px;
+  border: none;
+  font-size: 20px;
+  background-color: rgb(180, 217, 132);;
+  transition: 0.3s;
+  cursor: pointer;
+}
+#LikeButtonn:hover{
+color: red;
+}
+#Cartbutton{
+ border: none;
+ background-color: rgb(180, 217, 132);;
+ font-size: 20px;
+ margin-top: 3px;
+ transition: 0.4s;
+}
+
+#Cartbutton:hover{
+  color: aqua;
+  margin-left: 10px;
+}
+
+#serchcase{
+  display: grid;
+  grid-template-columns: auto auto auto;
+
+width: 500px;
+height: auto;
+
+}
+#serchcase img{
+
+  width: 100px;
+  height: 100px;
+  cursor: pointer;
 }
 
  

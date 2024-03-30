@@ -1,9 +1,11 @@
-import { useState, useMemo } from "react";
+import { useState, useMemo, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import { Button, Space, Avatar, Popover, Input } from "antd";
 import logoo from "../../assets/images/logoo.png";
 import { THeder,NTranslate } from "./Heder.styled";
 import { FiShoppingCart } from "react-icons/fi";
+import {HeartOutlined} from '@ant-design/icons';
+import { publicAxios } from "@src/utils/publicAxios";
 
 import { SignInModal } from "@src/modules/SignInModal"; 
 import { SignUpModal } from "@src/modules/SignUpModal";
@@ -12,19 +14,33 @@ import { useAuthProvider } from "../../provider/AuthProvider";
 import { TAuthorizationStage_Enum } from "@src/provider/AuthProvider/AuthContext";
 import { composeAvatarName } from "../../utils/composeAvatarName";
 import { Translate } from "@src/components/Translate";
+import { producttype } from "@src/@types/requestTypes";
+
+import { useContext } from "react";
+import { GlobalContext } from "@src/provider/GlobalProvider";
+
+import { LoadingOutlined} from '@ant-design/icons';
+import Item from "antd/es/list/Item";
 
 export function LayoutHeader() {
    const {authStage, userData, logaut} = useAuthProvider();
    const navigate = useNavigate();
 
    const [showSignUp, setShowSignUp] = useState<boolean>(false);
-   const [showSignIn, setShowSignIn] = useState<boolean>(false)
+   const [showSignIn, setShowSignIn] = useState<boolean>(false);
    
+   const [searchdata, setsearchdata] = useState<producttype[]>();
+   const [search, setSearch] =useState("");
+   
+   const {
+      setProductId,
+  } = useContext(GlobalContext);
+
    const AuthorizedView = useMemo(
    () => (
 <div>
-   
-   <Button className="mr-5 rounded-md " onClick={() => navigate("./CartPage")} ><FiShoppingCart/></Button>
+   <button id="LikeButtonn" onClick={() => navigate("./LikePage")}><HeartOutlined/></button>
+   <Button id="Cartbutton" className="mr-5 rounded-md " onClick={() => navigate("./CartPage")} ><FiShoppingCart/></Button>
    <Popover
     content={ 
       <div className=" gap-3">
@@ -54,6 +70,14 @@ const UnauthorizedView = useMemo(() =>(
   </div>
 ), [])
 
+async function getSearchproduct(){
+   const resp = await publicAxios.get(`/product?page=1&pageSize=30`);
+   setsearchdata(resp.data.products);
+}
+useEffect(() => {
+   getSearchproduct();
+}, []);
+
 
     return(
       <>
@@ -63,7 +87,42 @@ const UnauthorizedView = useMemo(() =>(
      <THeder className="p-3 bg-transparent flex justify-between "> 
         <div>
          <img className="rounded-md	w-11 h-10 " src={logoo} onClick={() => navigate("/")}/>
-         <Input  placeholder="ძებნა"/>
+         
+         <Popover
+     content={
+      <div id="serchcase" >
+  {searchdata?.filter((item) => {
+   return search.toLowerCase() === ''
+   ? item
+   : item.title.toLowerCase().includes(search);
+  })
+  
+  .map((item) => {
+   if(search === ""){
+      return(
+         <div> </div>
+      )
+   }
+   return (
+      
+         <div 
+         key={item.id}
+           onClick={() => {
+            setProductId(item.id);
+            navigate(`/products/${item.id}`);
+           }}
+         >
+          <img src={item.image} />
+          </div>
+        
+   )
+  })}
+     </div>
+     }>
+   
+    <Input  placeholder="ძებნა"  onChange={(e) => setSearch(e.target.value)}/>
+   
+   </Popover>
         </div>
           {authStage === TAuthorizationStage_Enum.AUTHORIZED 
           ?  AuthorizedView

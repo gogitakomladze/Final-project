@@ -5,7 +5,7 @@ import { MainLayout } from "./layouts/MainLayout";
 import { Routes ,Route } from "react-router-dom"; 
 import { PrivateChild } from "./modules/PrivateRoute";
 import { CartPage } from "./view/CartPage";
-
+import { LikePage } from "./view/Likepage";
 
 import { Smartphon } from "./view/Categori/Smarphone";
 import { Photovideo } from "./view/Categori/Photovideo";
@@ -35,6 +35,10 @@ function App() {
         path="/CartPage"
       element={<PrivateChild children={<CartPage/>} />}
       />
+       <Route
+        path="/LikePage"
+      element={<PrivateChild children={<LikePage/>} />}
+      />
       <Route
         path="/Orders"
       element={<PrivateChild children={<Orders/>} />}
@@ -46,7 +50,7 @@ function App() {
       <Route path="/Tvmonitor" element ={<Tvmonitor/>} />
       <Route path="/Audio" element ={<Audio/>} />
       <Route path="/Tabs" element ={<Tabs/>}/>  
-
+      
       <Route path="/products" element={<Products/>}/>
       <Route path="/products/:id" element={ <OneProductPage/>}/>
       </Route>

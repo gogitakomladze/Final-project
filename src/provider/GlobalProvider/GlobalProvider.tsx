@@ -9,8 +9,12 @@ export function GlobalProvider({ children }: PropsWithChildren) {
     const [productId, setProductId] = useState<string>("");
     const [loading, setLoading] = useState<boolean>(true);
     const [countProducts, setCountProducts] = useState<number>(0);
+    const [countLikeProducts, setCountLikeProducts] = useState<number>(() => {
+        const countLikeProducts = localStorage.getItem("header Like count");
+        return countLikeProducts ? JSON.parse(countLikeProducts) : 0;
+      });
     const [countCartProducts, setCountCartProducts] = useState<number>(() => {
-        const countCartItems = localStorage.getItem("header cart count");
+       const countCartItems = localStorage.getItem("header cart count");
         return countCartItems ? JSON.parse(countCartItems) : 0;
       });
     const [purchasedItem, setPurchasedItem] = useState<{ id: string }[]>(() => {
@@ -32,6 +36,8 @@ export function GlobalProvider({ children }: PropsWithChildren) {
             setProductId,
             loading,
             setLoading,
+            countLikeProducts,
+            setCountLikeProducts,
             countCartProducts,
             setCountCartProducts,
             countProducts,

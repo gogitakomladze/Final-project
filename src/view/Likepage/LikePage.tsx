@@ -1,41 +1,40 @@
 import { useEffect, useContext, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { GlobalContext } from "@src/provider/GlobalProvider";
-import cartDeleteRequest from "@src/utils/CartDeleteRequest";
+import LikeDeleteRequest from "@src/utils/LikeDeleteRequest";
 
-import { TCartProducts } from "@src/@types/requestTypes";
+import { TLikeProduct } from "@src/@types/requestTypes";
 import axios from "axios";
 
-import { Tbuy, Tcartproduct, Cartpage } from "./cartpage.styled";
 
 import {  DeleteOutlined, LoadingOutlined} from '@ant-design/icons';
 
 
 
 
-export function CartPage() {
-  const [cartProducts, setCartProducts] = useState<TCartProducts[]>([]);
+export function LikePage() {
+  const [likeproduct, setLikeproduct] = useState<TLikeProduct[]>([]);
   const [selectSavedProduct, setSelectSavedProduct] = useState<string[]>([]);
   const [loading, setLoading] = useState<boolean>(false);
  
 
   const {
-    countCartProducts,
-    setCountCartProducts,
+    countLikeProducts,
+    setCountLikeProducts,
     countProducts,
     setCountProducts,
     purchasedItem,
   } = useContext(GlobalContext);
 
-  async function getCartProducts() {
+  async function Getlikeproduct() {
     try {
       setLoading(true);
-      const response = await axios.get("http://localhost:3000/cart", {
+      const response = await axios.get("http://localhost:3000/liked-products", {
         headers: {
           Authorization: `Bearer ${token}`,
         },
       });
-      setCartProducts(response.data);
+      setLikeproduct(response.data);
       setLoading(false);
     
 
@@ -57,16 +56,16 @@ export function CartPage() {
   useEffect(() => {
     localStorage.setItem(
       "header cart count",
-      JSON.stringify(countCartProducts)
+      JSON.stringify(countLikeProducts)
     );
-  }, [countCartProducts]);
+  }, [countLikeProducts]);
 
-  setCountCartProducts(countProducts - selectSavedProduct.length);
+  setCountLikeProducts(countProducts - selectSavedProduct.length);
 
   
 
   useEffect(() => {
-    getCartProducts();
+    Getlikeproduct();
   }, []);
 
   useEffect(() => {
@@ -85,10 +84,10 @@ export function CartPage() {
     setSelectSavedProduct(savedProducts);
   }, []);
 
-  async function deleteCartProduct(cartProductId: string) {
+  async function deleteCartProduct(LikeProductId: string) {
     try {
-      cartDeleteRequest({ cartProductId, token });
-      getCartProducts();
+      LikeDeleteRequest({ LikeProductId, token });
+      Getlikeproduct();
     } catch (error) {
       console.log("Couldn't Remove The Product", error);
     } finally {
@@ -101,10 +100,10 @@ export function CartPage() {
     localStorage.setItem("purchased item", JSON.stringify(purchasedItem));
   }, [purchasedItem]);
 
-  const filterPurchasedItems = cartProducts.filter((item) => {
+  const filterPurchasedItems = likeproduct.filter((item) => {
     return !storedPurchasedItem
       .map((stored: any) => stored.id)
-      .includes(item.cartProduct.id);
+      .includes(item.likeProduct.id);
   });
 
   if (loading) {
@@ -114,43 +113,12 @@ export function CartPage() {
  return (
 
 
-<Cartpage>
+<>
 
-    <div>
-{filterPurchasedItems?.map((Item) => {
-    return (
-        <Tcartproduct>
-            <img src={Item.cartProduct.image} />
-            <p>{Item.cartProduct.title}</p>
-            <h2>{Item.cartProduct.price} ₾</h2>
-           <button onClick={() => {
-            deleteCartProduct(Item.id);
-            setTimeout(() => {
-                window.location.reload();
-            }, 1000);
+    
 
-           }}><DeleteOutlined /></button>  
-        </Tcartproduct>
-       
-        
-    )
-})}
-</div>
-     <Tbuy>
-            <h1>გადახდა</h1>
-            <div id="Product">
-                <p>პროდუქტები</p>
-                <p><b>22₾</b></p>
-            </div>
-            <div id="totalprice">
-                <p><b>ჯამური ღირებულება</b></p>
-                <p><b>22₾</b></p>
-            </div>
-            <div >
-                <button><b>ყიდვა</b></button>
-            </div>
-        </Tbuy>
-        </Cartpage>
+</>
+ 
 
-    )
+ );
 }

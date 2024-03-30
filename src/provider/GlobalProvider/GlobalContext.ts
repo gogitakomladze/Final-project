@@ -13,6 +13,8 @@ interface TGlobalContext {
     setProductId:React.Dispatch<React.SetStateAction<string>>;
     loading: boolean;
     setLoading: React.Dispatch<React.SetStateAction<boolean>>;
+    countLikeProducts:number;
+    setCountLikeProducts: React.Dispatch<React.SetStateAction<number>>;
     countCartProducts: number;
     setCountCartProducts: React.Dispatch<React.SetStateAction<number>>;
     countProducts: number;
@@ -41,6 +43,8 @@ export const GlobalContext = createContext<TGlobalContext>({
     setProductId:() => {},
     loading: false,
     setLoading: () => {},
+    countLikeProducts: 0,
+    setCountLikeProducts: () => {},
     countCartProducts: 0,
      setCountCartProducts: () => {},
     countProducts: 0,

@@ -36,3 +36,11 @@ export interface TCartProducts {
   product_id: string;
   user_id: string;
 }
+export interface TLikeProduct {
+    likeProduct: producttype;
+    count: number;
+    id: string;
+    product_id: string;
+    user_id: string;
+  
+}
