@@ -7,10 +7,12 @@ import { GlobalContext } from "@src/provider/GlobalProvider";
 import { useContext } from "react";
 
 import { useNavigate } from "react-router-dom";
+import { Popover } from "antd";
 
 export function Tvmonitor() {
     
   const [monitor, setmonitor] = useState([]);
+  const [priceserch, setpriceserch]=useState('');
 
   const {
     setProductId,
@@ -34,27 +36,67 @@ async function getSmartphon() {
    }, [])
 
 
+
+
    return (
     <>
    <h1 id="categoriTitle">მონიტორები</h1>
     <TCategoristyled>
     
+    <Popover
+     content={
+      <div id="serchcase" >
+   {monitor?.filter((item: producttype) => {
+ 
+   return priceserch.toLowerCase() ===''
+   ? item
+   : item.title.toLowerCase().includes(priceserch);
+   
+  })
+  
+  .map((item: producttype) => {
+  if(priceserch === ""){
+    return <div></div>
+  }
+   return (
+      
+         <div 
+         key={item.id}
+           onClick={() => {
+            setProductId(item.id);
+            navigate(`/products/${item.id}`);
+           }}
+         >
+          <img src={item.image} />
+          </div>
+        
+   )
+  })} 
+  <div id="pricefilter">
+        <h5>ბრენდის მიხედვით ფილტრი</h5>
+        <input placeholder="ფასი" onChange={(e) => setpriceserch(e.target.value)} />
+    </div>
+     </div>
+     }>
+  
+   
+   </Popover>
     
-        {monitor.map((monitor: producttype) => {
+        {monitor.map((mon: producttype) => {
             return (
 
                 <div 
-                key={monitor.id} 
+                key={mon.id} 
                 onClick={() => {
-                    setProductId(monitor.id);
-                    navigate(`/products/${monitor.id}`);
+                    setProductId(mon.id);
+                    navigate(`/products/${mon.id}`);
                     
                 }}
                 >
 
-                    <img src={monitor.image} /> 
-                    <p>{monitor.price} ₾</p>
-                    <h1>{monitor.title}</h1> 
+                    <img src={mon.image} /> 
+                    <p>{mon.price} ₾</p>
+                    <h1>{mon.title}</h1> 
 
                 </div>
             )

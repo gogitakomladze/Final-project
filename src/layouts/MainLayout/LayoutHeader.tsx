@@ -79,6 +79,7 @@ useEffect(() => {
 }, []);
 
 
+
     return(
       <>
      <NTranslate>
@@ -88,17 +89,18 @@ useEffect(() => {
         <div>
          <img className="rounded-md	w-11 h-10 " src={logoo} onClick={() => navigate("/")}/>
          
+         
          <Popover
      content={
       <div id="serchcase" >
-  {searchdata?.filter((item) => {
+   {searchdata?.filter((item) => {
    return search.toLowerCase() === ''
    ? item
    : item.title.toLowerCase().includes(search);
   })
   
   .map((item) => {
-   if(search === ""){
+   if(search === "" ){
       return(
          <div> </div>
       )

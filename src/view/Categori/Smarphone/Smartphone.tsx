@@ -8,9 +8,14 @@ import { useContext } from "react";
 
 import { useNavigate } from "react-router-dom";
 
+import { Popover } from "antd";
+
+
 export function Smartphon() {
 
   const [smartphon, setSmartphon] = useState([]);
+  const [priseserch, setpriseserch] = useState('')
+
 
   const {
     setProductId,
@@ -32,6 +37,44 @@ const navigate = useNavigate();
          <h1 id="categoriTitle">სმარტფონები</h1>
 
     <TCategoristyled >
+
+    <Popover
+     content={
+      <div id="serchcase" >
+   {smartphon?.filter((item: producttype) => {
+   return priseserch.toLowerCase() ===''
+   ? item
+   : item.title.toLowerCase().includes(priseserch);
+   
+  })
+  
+  .map((item: producttype) => {
+    if(priseserch === ""){
+        return <div></div>
+      }
+   return (
+      
+         <div 
+         key={item.id}
+           onClick={() => {
+            setProductId(item.id);
+            navigate(`/products/${item.id}`);
+           }}
+         >
+          <img src={item.image} />
+          </div>
+        
+   )
+  })}
+     </div>
+     }>
+   <div id="pricefilter">
+   <h5>ბრენდის მიხედვით ფილტრი</h5>
+        <input placeholder="ფასი" onChange={(e) => setpriseserch(e.target.value)} />
+    </div>
+   
+   </Popover>
+
         {smartphon.map((Smartphons: producttype) => {
             return (
 

@@ -5,6 +5,7 @@ import { GlobalContext } from "./GlobalContext";
 export function GlobalProvider({ children }: PropsWithChildren) {
     const [ categoriname, setCategoriName] = useState<TCategori[]>();
     const [products, setProducts] = useState<producttype[]>();
+    const [productsSale, setProductsSale] = useState<producttype[]>();
     const [productCategori, setProductCategori] = useState<producttype[]>();
     const [productId, setProductId] = useState<string>("");
     const [loading, setLoading] = useState<boolean>(true);
@@ -30,6 +31,8 @@ export function GlobalProvider({ children }: PropsWithChildren) {
             setCategoriName,
             products,
             setProducts,
+            productsSale,
+            setProductsSale,
             productCategori,
             setProductCategori,
             productId,

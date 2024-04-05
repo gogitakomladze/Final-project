@@ -10,6 +10,11 @@ export function PrivateChild ({ children }: PropsWithChildren) {
     return authStage === TAuthorizationStage_Enum.AUTHORIZED ? (
         children
             ) : (
-        <Navigate to="/" />
+              setTimeout(() => {
+                 <Navigate to="/" />
+              }, 1000)
+                   
+                   
+       
     )
 }

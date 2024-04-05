@@ -5,12 +5,16 @@ import { TCategoristyled } from "../categori.styled";
 
 import { GlobalContext } from "@src/provider/GlobalProvider";
 import { useContext } from "react";
+import { Popover } from "antd";
+
 
 import { useNavigate } from "react-router-dom";
 
 export function Gaming() {
 
   const [gaming, setGaming] = useState([]);
+  const [priseserch, setpriseserch] = useState('')
+
 
   const {
     setProductId,
@@ -33,6 +37,42 @@ const navigate = useNavigate();
 
     
     <TCategoristyled >
+    <Popover
+     content={
+      <div id="serchcase" >
+   {gaming?.filter((item: producttype) => {
+   return priseserch.toLowerCase() ===''
+   ? item
+   : item.title.toLowerCase().includes(priseserch);
+   
+  })
+  
+  .map((item: producttype) => {
+    if(priseserch === ""){
+        return <div></div>
+      }
+   return (
+      
+         <div 
+         key={item.id}
+           onClick={() => {
+            setProductId(item.id);
+            navigate(`/products/${item.id}`);
+           }}
+         >
+          <img src={item.image} />
+          </div>
+        
+   )
+  })}
+     </div>
+     }>
+   <div id="pricefilter">
+   <h5>ბრენდის მიხედვით ფილტრი</h5>
+        <input placeholder="ფასი" onChange={(e) => setpriseserch(e.target.value)} />
+    </div>
+   
+   </Popover>
         {gaming.map((game: producttype) => {
             return (
 

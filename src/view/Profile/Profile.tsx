@@ -22,7 +22,7 @@ export function Profile() {
            </div>
            <div>
                 <h4>სახელი, გვარი:</h4>
-                <p>{(userData?.first_name || "") + "  " + (userData?.last_name || "")}</p>
+                <p> {(userData?.first_name || "") + "  " + (userData?.last_name || "")}</p>
            </div>
            <div className="mb-20">
                 <h4>მობილურის ნომერი:</h4>

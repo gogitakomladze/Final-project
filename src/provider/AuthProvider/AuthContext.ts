@@ -7,7 +7,7 @@ export enum TAuthorizationStage_Enum {
 };
 
 type AuthContextValue = {
-    userData?: TUserRequest;
+    userData?: TUserRequest | undefined;
     authStage: TAuthorizationStage_Enum;
     logaut: () => void;
     setAuthData: (e: TAuthRequest) => void;

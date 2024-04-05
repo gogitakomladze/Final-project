@@ -8,9 +8,13 @@ import { useContext } from "react";
 
 import { useNavigate } from "react-router-dom";
 
+import { Popover } from "antd";
+
+
 export function Tabs() {
 
   const [tabs, settabs] = useState([]);
+  const [priseserch, setpriseserch] = useState('')
 
   const {
     setProductId,
@@ -31,7 +35,47 @@ const navigate = useNavigate();
     <>  
      <h1 id="categoriTitle">ტაბები</h1>
     <TCategoristyled >
+
+    <Popover
+     content={
+      <div id="serchcase" >
+   {tabs?.filter((item: producttype) => {
+   return priseserch.toLowerCase() ===''
+   ? item
+   : item.title.toLowerCase().includes(priseserch);
+   
+  })
+  
+  .map((item: producttype) => {
+    if(priseserch === "" ){
+        return(
+           <div> </div>
+        )
+     }
+   return (
+      
+         <div 
+         key={item.id}
+           onClick={() => {
+            setProductId(item.id);
+            navigate(`/products/${item.id}`);
+           }}
+         >
+          <img src={item.image} />
+          </div>
+        
+   )
+  })}
+     </div>
+     }>
+   <div id="pricefilter">
+   <h5>ბრენდის მიხედვით ფილტრი</h5>
+        <input placeholder="ფასი" onChange={(e) => setpriseserch(e.target.value)} />
+    </div>
+   
+   </Popover>
         {tabs.map((tab: producttype) => {
+             
             return (
 
                 <div

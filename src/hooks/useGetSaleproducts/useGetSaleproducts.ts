@@ -3,17 +3,17 @@ import { useContext, useEffect } from "react";
 import { useGlobalProvider } from "@src/provider/GlobalProvider/useGlobalProvider";
 import { GlobalContext } from "@src/provider/GlobalProvider";
 
-export function useGetProducts() {
-    const { products, setProducts } = useGlobalProvider();
+export function useGetProductsSale() {
+    const { productsSale, setProductsSale } = useGlobalProvider();
     const {
         setProductId,
         loading,
         setLoading,
     } = useContext(GlobalContext);
-    async function getProduct() {
+    async function getProductsale() {
         try {
-            const resp = await publicAxios.get("/product?page=1&pageSize=50");
-            setProducts(resp.data.products);
+            const resp = await publicAxios.get("/product?onlySales=true");
+            setProductsSale(resp.data.products);
         } catch (error) {
             console.error("Product fetch error", error);
         } finally {
@@ -22,7 +22,7 @@ export function useGetProducts() {
     } 
 
     useEffect(() => {
-        getProduct();
+        getProductsale();
     }, []);
-    return {products}
+    return {productsSale}
 }

@@ -25,10 +25,21 @@ p{
     width: 300px;
     margin-left: 20px;
 }
+div{
+    display: flex;
+    align-items: center;
+h5{
+    background-color: #b4d984;
+    padding: 5px;
+    border-radius: 10px;
+    font-size: 12px;
+}
+}
 h2{
     font-size: 18px;
     display: flex;
     align-items: center;
+
 }
 
 button{
@@ -56,6 +67,7 @@ padding-right: 20px;
 
 
 h1{
+    margin-top: 20px;
     font-size: 20px;
 
 }
@@ -80,17 +92,15 @@ div{
     border: none;
     border-radius: 20px;
     font-size: 16px;
-    margin-left: 20px;
-
     cursor: pointer;
-
+    margin-top: 60px;
     transition: 0.4s;
 
 
-    margin-top: 5%;
 }
 button:hover{
 box-shadow: #b4d984 0px 5px 50px;
 }
 }
+
 `

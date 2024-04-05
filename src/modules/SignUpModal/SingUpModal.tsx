@@ -38,8 +38,10 @@ export function SignUpModal( { onCancel }: SingUpModalProps ){
       setAuthLoading(true);
       const response = await publicAxios.post("/auth/register", values);
       setAuthData(response.data as TAuthRequest);
+      setAuthLoading(false);
+      onCancel();
     }catch (error) {
-
+      console.log("error", error)
     }finally {
       setAuthLoading(false);
     }
@@ -76,28 +78,28 @@ export function SignUpModal( { onCancel }: SingUpModalProps ){
     <Form.Item
       label="სახელი"
       name="first_name"
-      rules={[{ required: true, message: 'Please input your username!' }]}
+      rules={[{ required: true, message: 'Please input your first_name!' }]}
     >
       <Input />
     </Form.Item>
     <Form.Item
       label="გვარი"
       name="last_name"
-      rules={[{ required: true, message: 'Please input your username!' }]}
+      rules={[{ required: true, message: 'Please input your last_name!' }]}
     >
       <Input />
     </Form.Item>
     <Form.Item
       label="ტელეფონის ნომერი"
       name="phone_number"
-      rules={[{ required: true, message: 'Please input your username!' }]}
+      rules={[{ required: true, message: 'Please input your phone_number!' }]}
     >
       <Input />
     </Form.Item>
     <Form.Item
       label="იმელი"
       name="email"
-      rules={[{ required: true, message: 'Please input your username!' }]}
+      rules={[{ required: true, message: 'Please input your email!' }]}
     >
       <Input />
     </Form.Item>
@@ -112,7 +114,7 @@ export function SignUpModal( { onCancel }: SingUpModalProps ){
     <Form.Item
       label="გაიმეორე პაროლი"
       name="repeat-password"
-      rules={[{ required: true, message: 'Please input your password!' }]}
+      rules={[{ required: true, message: 'Please input your repeat-password!' }]}
     >
       <Input.Password />
     </Form.Item>

@@ -17,8 +17,7 @@ export function CartPage() {
   const [cartProducts, setCartProducts] = useState<TCartProducts[]>([]);
   const [selectSavedProduct, setSelectSavedProduct] = useState<string[]>([]);
   const [loading, setLoading] = useState<boolean>(false);
- 
-
+   
   const {
     countCartProducts,
     setCountCartProducts,
@@ -37,14 +36,16 @@ export function CartPage() {
       });
       setCartProducts(response.data);
       setLoading(false);
-    
 
       setCountProducts(Object.keys(response.data).length);
+      
     } catch (error) {
       console.log("Error Requesting Cart Products", error);
     } finally {
     }
   }
+  
+ 
 
   const token = localStorage.getItem("access_token");
 
@@ -62,7 +63,6 @@ export function CartPage() {
   }, [countCartProducts]);
 
   setCountCartProducts(countProducts - selectSavedProduct.length);
-
   
 
   useEffect(() => {
@@ -111,6 +111,7 @@ export function CartPage() {
     return <div id="loading"><LoadingOutlined/></div>;
   }
 
+
  return (
 
 
@@ -121,8 +122,12 @@ export function CartPage() {
     return (
         <Tcartproduct>
             <img src={Item.cartProduct.image} />
-            <p>{Item.cartProduct.title}</p>
+            <p>{Item.cartProduct.title}</p> 
+            <div>
+            <h5>{Item.count}</h5>
+            </div>
             <h2>{Item.cartProduct.price} ₾</h2>
+           
            <button onClick={() => {
             deleteCartProduct(Item.id);
             setTimeout(() => {
@@ -138,13 +143,10 @@ export function CartPage() {
 </div>
      <Tbuy>
             <h1>გადახდა</h1>
-            <div id="Product">
-                <p>პროდუქტები</p>
-                <p><b>22₾</b></p>
-            </div>
+            
             <div id="totalprice">
                 <p><b>ჯამური ღირებულება</b></p>
-                <p><b>22₾</b></p>
+                <p><b></b></p>
             </div>
             <div >
                 <button><b>ყიდვა</b></button>

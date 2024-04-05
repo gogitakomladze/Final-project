@@ -55,7 +55,7 @@ export function SignInModal( { onCancel }: SignInModalProps ){
     <Form.Item
       label="იმეილი"
       name="email"
-      rules={[{ required: true, message: 'Please input your username!' }]}
+      rules={[{ required: true, message: 'Please input your Email!' }]}
     >
       <Input />
     </Form.Item>

@@ -97,22 +97,13 @@ export  function OneProductPage() {
       }
 
 
-    // const firstSponsoredNav = () => {
-    //     navigate(`/products/${firstSponsored?.id}`);
-    //     window.location.reload();
-    //   };
-    
-    //   const secondSponsoredNav = () => {
-    //     navigate(`/products/${SecondSponsored?.id}`);
-    //     window.location.reload();
-    //   };
       if (loading) {
         return <div id="loading"><LoadingOutlined /></div>;
       }
     return (
         <TOneProduct>
         <div className="flex justify-between">
-            <div onClick={() => navigate("/")}>
+            <div onClick={() => navigate("/products")}>
                 <a >პროდუქტებში გადასვლა</a>
                 </div>
            
