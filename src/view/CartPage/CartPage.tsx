@@ -25,7 +25,6 @@ export function CartPage() {
     setCountProducts,
     purchasedItem,
   } = useContext(GlobalContext);
-
   async function getCartProducts() {
     try {
       setLoading(true);
@@ -127,7 +126,6 @@ export function CartPage() {
             <h5>{Item.count}</h5>
             </div>
             <h2>{Item.cartProduct.price} ₾</h2>
-           
            <button onClick={() => {
             deleteCartProduct(Item.id);
             setTimeout(() => {

@@ -48,7 +48,7 @@ color: red;
 
 #serchcase{
   display: grid;
-  grid-template-columns: auto auto auto;
+  grid-template-columns: auto auto auto auto auto;
 
 width: 500px;
 height: auto;
@@ -56,8 +56,8 @@ height: auto;
 }
 #serchcase img{
 
-  width: 100px;
-  height: 100px;
+  width: 80px;
+  height: 80px;
   cursor: pointer;
 }
 

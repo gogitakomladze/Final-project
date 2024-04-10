@@ -7,6 +7,8 @@ import { FiShoppingCart } from "react-icons/fi";
 import cartPostRequest from "@src/utils/CartPostRequest";
 import LikePostRequest from "@src/utils/LikePostRequest";
 
+import buyrequest from "@src/utils/buyproductsrequest";
+
 import { publicAxios } from "@src/utils/publicAxios"
 
 import { producttype } from "@src/@types/requestTypes"
@@ -27,7 +29,6 @@ export  function OneProductPage() {
         countCartProducts,
         setCountCartProducts,
     } = useContext(GlobalContext);
-
     const [oneProduct, setOneProduct] = useState<producttype | null>(null);
     const [firstSponsored, setFirstSponsored] = useState<producttype | null>(
         null
@@ -86,6 +87,7 @@ export  function OneProductPage() {
             console.log("error Loading Cart", error)
         }
       }
+    
       
       async function addToLike() {
         try{
@@ -130,6 +132,11 @@ export  function OneProductPage() {
         <TshopCard>
         <p><b>{oneProduct?.price} ₾</b></p>
         <p>უფასო მიწოდება 3 საათში</p>
+        <div>
+       
+        <h5>{countCartProducts}</h5>
+       
+        </div>
         <button id="addCap"
          onClick={() => {
             addToCart();

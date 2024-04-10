@@ -1,0 +1,1 @@
+export { Buypage } from "./Buypage";

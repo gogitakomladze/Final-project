@@ -5,7 +5,8 @@ import { MainLayout } from "./layouts/MainLayout";
 import { Routes ,Route } from "react-router-dom"; 
 import { PrivateChild } from "./modules/PrivateRoute";
 import { CartPage } from "./view/CartPage";
-import { LikePage } from "./view/Likepage";
+import { Likepage } from "./view/Likepage";
+import { Buypage } from "./view/Buypage";
 
 import { Smartphon } from "./view/Categori/Smarphone";
 import { Photovideo } from "./view/Categori/Photovideo";
@@ -30,14 +31,17 @@ function App() {
       path="/profile"
       element={<PrivateChild children={<Profile />} />}
       />
-     
+     <Route
+     path="/Buypage"
+     element={<PrivateChild children={<Buypage/>}/>}
+     />
       <Route
         path="/CartPage"
       element={<PrivateChild children={<CartPage/>} />}
       />
        <Route
-        path="/LikePage"
-      element={<PrivateChild children={<LikePage/>} />}
+        path="/Likepage"
+      element={<PrivateChild children={<Likepage/>} />}
       />
       <Route
         path="/Orders"

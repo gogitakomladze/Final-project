@@ -1,1 +1,1 @@
-export { LikePage } from "./LikePage";
+export { Likepage } from "./LikePage";

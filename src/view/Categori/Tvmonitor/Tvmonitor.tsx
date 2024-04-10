@@ -47,7 +47,6 @@ async function getSmartphon() {
      content={
       <div id="serchcase" >
    {monitor?.filter((item: producttype) => {
- 
    return priceserch.toLowerCase() ===''
    ? item
    : item.title.toLowerCase().includes(priceserch);
@@ -55,9 +54,9 @@ async function getSmartphon() {
   })
   
   .map((item: producttype) => {
-  if(priceserch === ""){
-    return <div></div>
-  }
+    if(priceserch === ""){
+        return <div></div>
+      }
    return (
       
          <div 
@@ -71,14 +70,13 @@ async function getSmartphon() {
           </div>
         
    )
-  })} 
-  <div id="pricefilter">
-        <h5>ბრენდის მიხედვით ფილტრი</h5>
-        <input placeholder="ფასი" onChange={(e) => setpriceserch(e.target.value)} />
-    </div>
+  })}
      </div>
      }>
-  
+   <div id="pricefilter">
+   <h5>ბრენდის მიხედვით ფილტრი</h5>
+        <input placeholder="ფასი" onChange={(e) => setpriceserch(e.target.value)} />
+    </div>
    
    </Popover>
     

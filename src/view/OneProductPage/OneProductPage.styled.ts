@@ -62,6 +62,11 @@ p{
         font-size: 30px;
     }
 }
+h5{
+    display: flex;
+    justify-content: center;
+    margin-top: 40px;
+}
 
 #addCap{
     background-color: #b4d984;

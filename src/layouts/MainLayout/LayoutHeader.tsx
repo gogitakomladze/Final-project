@@ -22,8 +22,13 @@ import { GlobalContext } from "@src/provider/GlobalProvider";
 import { LoadingOutlined} from '@ant-design/icons';
 import Item from "antd/es/list/Item";
 
+import { OneProductPage } from "@src/view/OneProductPage";
+import { useGlobalProvider } from "@src/provider/GlobalProvider/useGlobalProvider";
+
 export function LayoutHeader() {
    const {authStage, userData, logaut} = useAuthProvider();
+
+
    const navigate = useNavigate();
 
    const [showSignUp, setShowSignUp] = useState<boolean>(false);
