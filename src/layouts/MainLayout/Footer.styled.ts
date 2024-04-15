@@ -39,9 +39,12 @@ ul{
  export const TtowFooter = styled.div`
     background-color: black;
     color: white;
- 
    padding: 60px 0px;
-
+section{
+  width: 1400px;
+  margin: auto;
+  padding: 0px 120px;
+}
 
     h1{
       font-size: 18px;
@@ -60,7 +63,7 @@ ul{
   
     div{
       display: grid;
-      grid-template-columns: repeat(4, 1fr);
+      grid-template-columns: repeat(4,1fr);
       gap: 20px;
       overflow-x: hidden;
              

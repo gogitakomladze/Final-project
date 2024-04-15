@@ -37,18 +37,15 @@ export function Products() {
     <div id="carusel">
         <h4 className="mb-5">ფასდაკლება</h4>
         <Carousel autoplay>
-    <div>
-    <h3 style={contentStyle}>pirveli</h3>
-    </div>
-    <div>
-      <h3 style={contentStyle}>2</h3>
-    </div>
-    <div>
-      <h3 style={contentStyle}>3</h3>
-    </div>
-    <div>
-      <h3 style={contentStyle}>4</h3>
-    </div>
+          {productsSale?.map((item) => {
+            return(
+               <div key={item.id}>
+          <img src={item.image} style={contentStyle}/>
+        </div>
+            )
+          })}
+   
+  
   </Carousel>
 
   </div>
