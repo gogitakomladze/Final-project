@@ -133,9 +133,9 @@ export  function OneProductPage() {
         <p><b>{oneProduct?.price} ₾</b></p>
         <p>უფასო მიწოდება 3 საათში</p>
         <div>
-       
-        <h5>{countCartProducts}</h5>
-       
+       <div>
+       <p>კალათაში არის <b> {countCartProducts}</b> პროდუქტი</p> 
+       </div>
         </div>
         <button id="addCap"
          onClick={() => {

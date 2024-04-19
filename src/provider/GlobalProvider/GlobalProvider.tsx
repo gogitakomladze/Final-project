@@ -12,7 +12,8 @@ export function GlobalProvider({ children }: PropsWithChildren) {
     const [countProducts, setCountProducts] = useState<number>(0);
     const [countLikeProducts, setCountLikeProducts] = useState<number>(() => {
         const countLikeProducts = localStorage.getItem("header Like count");
-        return countLikeProducts ? JSON.parse(countLikeProducts) : 0;
+        return countLikeProducts
+         ? JSON.parse(countLikeProducts) : 0;
       });
     const [countCartProducts, setCountCartProducts] = useState<number>(() => {
        const countCartItems = localStorage.getItem("header cart count");
@@ -23,7 +24,7 @@ export function GlobalProvider({ children }: PropsWithChildren) {
         return storedPurchasedItem ? JSON.parse(storedPurchasedItem) : [];
       });  
      const [subtotal, setSubtotal] = useState<number>(0);
-   
+   console.log(countCartProducts)
     return (
         <GlobalContext.Provider
         value={{

@@ -1,5 +1,5 @@
 import { useGetProducts } from "@src/hooks/useGetProduct/useGetProduct";
-import {TProduct} from "../../components/Products/product.styled"
+import {TProduct, Caruseli} from "../../components/Products/product.styled"
 import { useNavigate } from "react-router-dom";
 import { useContext } from "react";
 import { GlobalContext } from "@src/provider/GlobalProvider";
@@ -25,11 +25,12 @@ export function Products() {
 
       //carusel
       const contentStyle: React.CSSProperties = {
-        height: '160px',
+        height: '300px',
+        width: '300px',
         color: '#fff',
         lineHeight: '160px',
         textAlign: 'center',
-        background: '#020711',
+        background: '#000000',
 
       };
    return ( 
@@ -39,9 +40,26 @@ export function Products() {
         <Carousel autoplay>
           {productsSale?.map((item) => {
             return(
-               <div key={item.id}>
-          <img src={item.image} style={contentStyle}/>
-        </div>
+               <Caruseli key={item.id}
+               onClick={() => {
+                setProductId(item.id);
+                navigate(`/products/${item.id}`);
+                setLoading(true);
+            }}
+               >
+
+                <div>
+                <img src={item.image} style={contentStyle}/> 
+                <h3>{item.description}</h3>
+               </div>
+
+
+              <div id="caruselfooter">
+              <h2>{item.salePrice} ₾</h2>
+               <h3><s>{item.price}</s> ₾</h3>
+
+             </div>
+          </Caruseli>
             )
           })}
    

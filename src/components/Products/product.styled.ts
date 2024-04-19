@@ -30,6 +30,7 @@ div{
   justify-content: space-around;
 }
 
+
 @media only screen and (max-width: 1200px) {
     width: 900px;
   margin: auto;
@@ -48,3 +49,20 @@ div{
   }
 
 `
+export const Caruseli = styled.div`
+
+div{
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+#caruselfooter{
+  display: flex;
+  justify-content: space-around;
+
+  margin-top: 30px;
+  background-color: black;
+  border-radius: 20px;
+  color: white;
+}
+`;
