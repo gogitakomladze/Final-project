@@ -19,11 +19,8 @@ import { producttype } from "@src/@types/requestTypes";
 import { useContext } from "react";
 import { GlobalContext } from "@src/provider/GlobalProvider";
 
-import { LoadingOutlined} from '@ant-design/icons';
-import Item from "antd/es/list/Item";
 
-import { OneProductPage } from "@src/view/OneProductPage";
-import { useGlobalProvider } from "@src/provider/GlobalProvider/useGlobalProvider";
+
 
 export function LayoutHeader() {
    const {authStage, userData, logaut} = useAuthProvider();

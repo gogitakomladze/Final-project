@@ -7,15 +7,16 @@ import { FiShoppingCart } from "react-icons/fi";
 import cartPostRequest from "@src/utils/CartPostRequest";
 import LikePostRequest from "@src/utils/LikePostRequest";
 
-import buyrequest from "@src/utils/buyproductsrequest";
-
 import { publicAxios } from "@src/utils/publicAxios"
 
 import { producttype } from "@src/@types/requestTypes"
 
+import { SignInModal } from "@src/modules/SignInModal";
+
 import {HeartOutlined, LoadingOutlined} from '@ant-design/icons';
 
 import { TOneProduct, TshopCard } from "./OneProductPage.styled"
+import { useAuthProvider } from "@src/provider/AuthProvider";
 export  function OneProductPage() {
     const {
         productId,
@@ -40,6 +41,13 @@ export  function OneProductPage() {
 
       const [cartAdded, setCartAdded] = useState<boolean>(false);
       const [likeAdded, setLikeAdded] = useState<boolean>(false);
+
+
+      const {authStage, userData, logaut} = useAuthProvider();
+
+
+      const [showSignIn, setShowSignIn] = useState<boolean>(false);
+
 
       const {id} = useParams();
 
@@ -79,7 +87,17 @@ export  function OneProductPage() {
         }
     }, [id]);
 
+    //auth and unauth
+
+    // function AuthOnUnAuth() {
+    //     if(authStage === "un")
+    // }
+
       async function addToCart() {
+        if(authStage === "unatorized") {
+             setShowSignIn(true);
+            
+        }else{
         try {
             await cartPostRequest(productId, token);
             setCountCartProducts(countCartProducts + 1);
@@ -87,6 +105,7 @@ export  function OneProductPage() {
             console.log("error Loading Cart", error)
         }
       }
+    }
     
       
       async function addToLike() {
@@ -102,6 +121,8 @@ export  function OneProductPage() {
       if (loading) {
         return <div id="loading"><LoadingOutlined /></div>;
       }
+
+
     return (
         <TOneProduct>
         <div className="flex justify-between">
@@ -137,6 +158,7 @@ export  function OneProductPage() {
        <p>კალათაში არის <b> {countCartProducts}</b> პროდუქტი</p> 
        </div>
         </div>
+        
         <button id="addCap"
          onClick={() => {
             addToCart();
@@ -149,11 +171,14 @@ export  function OneProductPage() {
      >
             <FiShoppingCart/><b>კალათაში დამატება</b>
             </button>
-        <button id="buy"><b>ყიდვა</b></button>
+        <button id="buy" ><b>ყიდვა</b></button>
         </TshopCard>
         </div>
+
+        {showSignIn && <SignInModal onCancel={() => setShowSignIn(false)}/>}
+
         </TOneProduct>
 
-        
+
     )
 }
