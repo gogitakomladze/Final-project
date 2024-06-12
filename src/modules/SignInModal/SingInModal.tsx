@@ -4,6 +4,7 @@ import { publicAxios } from "../../utils/publicAxios";
 import { useAuthProvider } from "../../provider/AuthProvider";
 import { useState } from "react";
 
+import { SignUpModal } from "../SignUpModal";
 
 type SignInModalProps = {
     onCancel: () => void;
@@ -15,6 +16,9 @@ export type SingInFormValue = {
 }
 
 export function SignInModal( { onCancel }: SignInModalProps ){
+
+  const [showSignUp, setShowSignUp] = useState<boolean>(false);
+
   const [authLoading, setAuthLoading] = useState(false);
   const [authError, setAuthError] = useState<boolean>();
    const { setAuthData } = useAuthProvider();
@@ -71,8 +75,14 @@ export function SignInModal( { onCancel }: SignInModalProps ){
     <Alert className="mt-3"
     type="error"
     message="მომხმარების მეილი ანა პაროლი არასწორია"
-    />}
+    />} 
+    
+
  </Form>
+ <Button  className="bg-black" type='primary' onClick={() => { setShowSignUp(true) }} >Sing Up</Button>
+ {showSignUp && <SignUpModal onCancel={() => setShowSignUp(false)}/>}
+
   </Modal>
+  
     );
 }
