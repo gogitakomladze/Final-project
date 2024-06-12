@@ -24,7 +24,6 @@ export function GlobalProvider({ children }: PropsWithChildren) {
         return storedPurchasedItem ? JSON.parse(storedPurchasedItem) : [];
       });  
      const [subtotal, setSubtotal] = useState<number>(0);
-   console.log(countCartProducts)
     return (
         <GlobalContext.Provider
         value={{

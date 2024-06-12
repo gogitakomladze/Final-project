@@ -24,6 +24,22 @@ div{
     cursor: pointer;
 }
 
+.price{
+  display: flex;
+  justify-content: center;
+}
+
+.product-sale{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  
+    b{
+      padding-right: 50px;
+    }
+}
+
 #price{
   margin-top: 15px;
   display: flex;
@@ -50,7 +66,12 @@ div{
 
 `
 export const Caruseli = styled.div`
+#sale-product-description {
+  font-size: 12px;
+width: 70%;
+margin-left: 15%;
 
+}
 div{
   display: flex;
   align-items: center;

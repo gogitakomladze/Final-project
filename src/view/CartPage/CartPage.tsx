@@ -10,6 +10,7 @@ import { Tbuy, Tcartproduct, Cartpage } from "./cartpage.styled";
 
 import {  DeleteOutlined, LoadingOutlined} from '@ant-design/icons';
 
+import { useGetProductsSale } from "@src/hooks/useGetSaleproducts/useGetSaleproducts";
 
 
 
@@ -17,6 +18,9 @@ export function CartPage() {
   const [cartProducts, setCartProducts] = useState<TCartProducts[]>([]);
   const [selectSavedProduct, setSelectSavedProduct] = useState<string[]>([]);
   const [loading, setLoading] = useState<boolean>(false);
+  
+  const {productsSale} =useGetProductsSale();
+
    
   const {
     countCartProducts,
@@ -44,7 +48,8 @@ export function CartPage() {
     }
   }
   
- 
+  // {product.salePrice ? <div className="product-sale"><b>{product.salePrice} ₾</b> <del>{product.price}</del>  ₾ </div>: <b className="price">{product.price} ₾</b>}
+
 
   const token = localStorage.getItem("access_token");
 
@@ -125,7 +130,8 @@ export function CartPage() {
             <div>
             <h5>{Item.count}</h5>
             </div>
-            <h2>{Item.cartProduct.price} ₾</h2>
+            <h2>{Item.cartProduct.salePrice ? <div><b>{Item.cartProduct.salePrice} ₾</b><del className="ml-10">{Item.cartProduct.price} ₾</del></div> : <b>{Item.cartProduct.price} ₾</b>}</h2>
+          
            <button onClick={() => {
             deleteCartProduct(Item.id);
             setTimeout(() => {

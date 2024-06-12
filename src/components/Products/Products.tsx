@@ -48,14 +48,14 @@ export function Products() {
             }}
                >
 
-                <div>
+                <div id="sale-product-description">
                 <img src={item.image} style={contentStyle}/> 
                 <h3>{item.description}</h3>
                </div>
 
 
               <div id="caruselfooter">
-              <h2>{item.salePrice} ₾</h2>
+                <h2>{item.salePrice}₾</h2>
                <h3><s>{item.price}</s> ₾</h3>
 
              </div>
@@ -80,15 +80,8 @@ export function Products() {
                     setLoading(true);
                 }}
                 >
-                    
-
-                    
-                    <img src={product.image} /> 
-                    <nav id="price"> 
-                    <p><b>{product.salePrice} </b></p>
-                        <p>{product.price} ₾</p>
-                    </nav>
-                    
+                   <img src={product.image} /> 
+                    {product.salePrice ? <div className="product-sale"><b>{product.salePrice} ₾</b> <del>{product.price}</del>  ₾ </div>: <b className="price">{product.price} ₾</b>}
                     <h1>{product.title}</h1> 
                     
                 </div>
