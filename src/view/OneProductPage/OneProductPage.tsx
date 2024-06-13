@@ -151,7 +151,9 @@ export  function OneProductPage() {
          <p>{oneProduct?.description}</p>
        
         <TshopCard>
-        <p><b>{oneProduct?.price} ₾</b></p>
+
+            <div className="one-product-sale">{oneProduct?.salePrice ? <p><b>Sale : {oneProduct?.salePrice} ₾</b> {oneProduct.price} ₾</p>:<b>{oneProduct?.price} ₾</b>}</div>
+        
         <p>უფასო მიწოდება 3 საათში</p>
         <div>
        <div>

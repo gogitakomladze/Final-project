@@ -54,14 +54,33 @@ width: 350px;
 border-radius: 10px;
 box-shadow: rgba(203, 203, 203, 0.25) 0px 0px 16px;
 background: rgb(255, 255, 255);
-p{
+
+.one-product-sale{
+
+    p{
+    margin-top: 20px;
+    margin-left: 20px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    
+    b{
+        font-size: 20px;
+        
+    }
+}
+
+}
+    p{
     margin-top: 20px;
     margin-left: 20px;
     
     b{
-        font-size: 30px;
+        font-size: 20px;
     }
 }
+
+
 h5{
     display: flex;
     justify-content: center;
@@ -103,6 +122,7 @@ h5{
 
 
     margin-top: 5%;
+    margin-bottom: 20px;
 }
 #buy:hover{
 box-shadow: #b4d984 0px 30px 30px;

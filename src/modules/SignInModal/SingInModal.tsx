@@ -4,7 +4,6 @@ import { publicAxios } from "../../utils/publicAxios";
 import { useAuthProvider } from "../../provider/AuthProvider";
 import { useState } from "react";
 
-import { SignUpModal } from "../SignUpModal";
 
 type SignInModalProps = {
     onCancel: () => void;
@@ -42,7 +41,8 @@ export function SignInModal( { onCancel }: SignInModalProps ){
         centered={true} 
         onCancel={onCancel} 
         open={true}
-        footer={ <Button
+        footer={ 
+        <Button
            loading={authLoading}  
          className="bg-black"
          form="signIn" 
@@ -76,12 +76,7 @@ export function SignInModal( { onCancel }: SignInModalProps ){
     type="error"
     message="მომხმარების მეილი ანა პაროლი არასწორია"
     />} 
-    
-
  </Form>
- <Button  className="bg-black" type='primary' onClick={() => { setShowSignUp(true) }} >Sing Up</Button>
- {showSignUp && <SignUpModal onCancel={() => setShowSignUp(false)}/>}
-
   </Modal>
   
     );
