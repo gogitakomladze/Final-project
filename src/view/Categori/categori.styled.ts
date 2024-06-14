@@ -33,6 +33,22 @@ row-gap: 50px;
           
     }
 }
+
+.category-price {
+  b{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    font-size: 20px;
+  }
+  p{
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+  }
+}
+
 img {
     width: 300px ;
     height: 300px;

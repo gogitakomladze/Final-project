@@ -86,8 +86,8 @@ const navigate = useNavigate();
                  >
 
                     <img src={game.image} /> 
-                    <p>{game.price} ₾</p>
-                    <h1>{game.title}</h1> 
+                    <div className="category-price">{game?.salePrice ? <p><b>Sale : {game?.salePrice} ₾ </b> <del>{game.price} ₾</del></p>:<b>{game?.price} ₾</b>}</div>
+                     <h1>{game.title}</h1> 
 
                 </div>
             )

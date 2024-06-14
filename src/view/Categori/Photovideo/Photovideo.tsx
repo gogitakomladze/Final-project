@@ -84,7 +84,7 @@ const navigate = useNavigate();
                 }}>
 
                     <img src={potovid.image} /> 
-                    <p>{potovid.price} ₾</p>
+                    <div className="category-price">{potovid?.salePrice ? <p><b>Sale : {potovid?.salePrice} ₾ </b> <del>{potovid.price} ₾</del></p>:<b>{potovid?.price} ₾</b>}</div>
                     <h1>{potovid.title}</h1> 
 
                 </div>

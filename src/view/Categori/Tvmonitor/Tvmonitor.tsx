@@ -93,7 +93,7 @@ async function getSmartphon() {
                 >
 
                     <img src={mon.image} /> 
-                    <p>{mon.price} ₾</p>
+                    <div className="category-price">{mon?.salePrice ? <p><b>Sale : {mon?.salePrice} ₾ </b> <del>{mon.price} ₾</del></p>:<b>{mon?.price} ₾</b>}</div>
                     <h1>{mon.title}</h1> 
 
                 </div>

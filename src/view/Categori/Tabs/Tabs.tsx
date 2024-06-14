@@ -88,7 +88,7 @@ const navigate = useNavigate();
                  >
 
                     <img src={tab.image} /> 
-                    <p>{tab.price} ₾</p>
+                    <div className="category-price">{tab?.salePrice ? <p><b>Sale : {tab?.salePrice} ₾ </b> <del>{tab.price} ₾</del></p>:<b>{tab?.price} ₾</b>}</div>
                     <h1>{tab.title}</h1> 
 
                 </div>

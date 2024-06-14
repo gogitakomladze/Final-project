@@ -87,7 +87,7 @@ const navigate = useNavigate();
                 >
 
                     <img src={audio.image} /> 
-                    <p>{audio.price} ₾</p>
+                    <div className="category-price">{audio?.salePrice ? <p><b>Sale : {audio?.salePrice} ₾ </b> <del>{audio.price} ₾</del></p>:<b>{audio?.price} ₾</b>}</div>
                     <h1>{audio.title}</h1> 
 
                 </div>

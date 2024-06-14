@@ -88,7 +88,7 @@ const navigate = useNavigate();
                 >
 
                     <img src={Smartphons.image} /> 
-                    <p>{Smartphons.price} ₾</p>
+                    <div className="category-price">{Smartphons?.salePrice ? <p><b>Sale : {Smartphons?.salePrice} ₾ </b> <del>{Smartphons.price} ₾</del></p>:<b>{Smartphons?.price} ₾</b>}</div>
                     <h1>{Smartphons.title}</h1> 
 
                 </div>

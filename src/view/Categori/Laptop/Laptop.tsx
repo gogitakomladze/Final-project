@@ -86,7 +86,7 @@ const navigate = useNavigate();
                 }}>
 
                     <img src={lept.image} /> 
-                    <p>{lept.price} ₾</p>
+                    <div className="category-price">{lept?.salePrice ? <p><b>Sale : {lept?.salePrice} ₾ </b> <del>{lept.price} ₾</del></p>:<b>{lept?.price} ₾</b>}</div>
                     <h1>{lept.title}</h1> 
 
                 </div>
