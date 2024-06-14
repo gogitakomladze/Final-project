@@ -14,6 +14,7 @@ export function useGetProducts() {
         try {
             const resp = await publicAxios.get("/product?page=1&pageSize=50");
             setProducts(resp.data.products);
+            
         } catch (error) {
             console.error("Product fetch error", error);
         } finally {

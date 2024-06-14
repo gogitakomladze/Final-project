@@ -12,6 +12,7 @@ export function AuthProvider({ children }: PropsWithChildren){
     const [authStage, setAuthStage] = useState<TAuthorizationStage_Enum>(
         TAuthorizationStage_Enum.UNAUTHORIZED
     );
+console.log(authStage);
 
 
  function setAuthData(tokens:  TAuthRequest ) {

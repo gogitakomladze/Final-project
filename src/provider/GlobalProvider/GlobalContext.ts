@@ -6,6 +6,8 @@ interface TGlobalContext {
     categoriname: TCategori[] | undefined;
     setCategoriName: React.Dispatch<React.SetStateAction<TCategori[] | undefined>>;
     products: producttype[] | undefined;
+    cartproducts: producttype[] | undefined;
+    setCartProducts: React.Dispatch<React.SetStateAction<producttype[] | undefined>>;
     setProducts: React.Dispatch<React.SetStateAction<producttype[] | undefined>>;
     productsSale: producttype[] | undefined
     setProductsSale: React.Dispatch<React.SetStateAction<producttype[] | undefined>>
@@ -39,6 +41,8 @@ export const GlobalContext = createContext<TGlobalContext>({
     setCategoriName: () => {},
     products: [],
     setProducts: () => {},
+    cartproducts:[],
+    setCartProducts:() => {},
     productsSale: [],
     setProductsSale: () => {},
     productCategori: [],

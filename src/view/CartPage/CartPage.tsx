@@ -48,7 +48,6 @@ export function CartPage() {
     }
   }
   
-  // {product.salePrice ? <div className="product-sale"><b>{product.salePrice} ₾</b> <del>{product.price}</del>  ₾ </div>: <b className="price">{product.price} ₾</b>}
 
 
   const token = localStorage.getItem("access_token");

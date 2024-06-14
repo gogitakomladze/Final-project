@@ -71,7 +71,17 @@ background: rgb(255, 255, 255);
 }
 
 }
-    p{
+
+.one-product-price{
+    display: flex;
+    justify-content: center;
+    font-size: 20px;
+
+    margin-top: 20px;
+}
+
+
+p{
     margin-top: 20px;
     margin-left: 20px;
     

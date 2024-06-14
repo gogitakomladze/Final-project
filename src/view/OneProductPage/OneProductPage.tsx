@@ -17,6 +17,7 @@ import {HeartOutlined, LoadingOutlined} from '@ant-design/icons';
 
 import { TOneProduct, TshopCard } from "./OneProductPage.styled"
 import { useAuthProvider } from "@src/provider/AuthProvider";
+import { useGetCartProducts } from "@src/hooks/useGetCartProducts/useGetCartProducts";
 export  function OneProductPage() {
     const {
         productId,
@@ -30,7 +31,12 @@ export  function OneProductPage() {
         countCartProducts,
         setCountCartProducts,
     } = useContext(GlobalContext);
+
+
+
     const [oneProduct, setOneProduct] = useState<producttype | null>(null);
+
+    const {cartproducts} = useGetCartProducts();
     const [firstSponsored, setFirstSponsored] = useState<producttype | null>(
         null
       );
@@ -54,6 +60,8 @@ export  function OneProductPage() {
     const token = localStorage.getItem("access_token");
 
     const navigate = useNavigate();
+
+    
 
     async function getOneProduct() {
         try {
@@ -100,18 +108,23 @@ export  function OneProductPage() {
         }else{
         try {
             await cartPostRequest(productId, token);
-            setCountCartProducts(countCartProducts + 1);
+             setCountCartProducts(countCartProducts + 1);
+            
+            
         } catch (error) {
             console.log("error Loading Cart", error)
         }
       }
     }
-    
+   
       
       async function addToLike() {
         try{
             await LikePostRequest(productId, token);
-            setCountLikeProducts(countLikeProducts + 1);
+            
+              {}  setCountLikeProducts(countLikeProducts + 1);
+            
+            
         }catch (error) {
             console.log("error loading like", error)
         }
@@ -122,6 +135,7 @@ export  function OneProductPage() {
         return <div id="loading"><LoadingOutlined /></div>;
       }
 
+    
 
     return (
         <TOneProduct>
@@ -152,12 +166,12 @@ export  function OneProductPage() {
        
         <TshopCard>
 
-            <div className="one-product-sale">{oneProduct?.salePrice ? <p><b>Sale : {oneProduct?.salePrice} ₾</b> {oneProduct.price} ₾</p>:<b>{oneProduct?.price} ₾</b>}</div>
+            <div className="one-product-sale">{oneProduct?.salePrice ? <p><b>Sale : {oneProduct?.salePrice} ₾</b> {oneProduct.price} ₾</p>:<b className="one-product-price">{oneProduct?.price} ₾</b>}</div>
         
         <p>უფასო მიწოდება 3 საათში</p>
         <div>
        <div>
-       <p>კალათაში არის <b> {countCartProducts}</b> პროდუქტი</p> 
+       <p>  {authStage === "unatorized" ?  <b>გაიარეთ რეგისტრაცია ან ავტორიზაცია</b> : <p> კალათაში არის <b>{countCartProducts}</b> პროდუქტი </p>}</p> 
        </div>
         </div>
         
