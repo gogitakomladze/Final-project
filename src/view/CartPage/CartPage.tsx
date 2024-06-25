@@ -99,22 +99,25 @@ export function CartPage() {
 
   // const counts = cartProducts.map(item => item.count); 
 
-const handlecount = (id, co) => {
-  setCartProducts(cartProducts.map(item => 
-    item.id === id ? {...item, co: parseInt(co) }: item
-  ));
-};
+// const handlecount = (id, count) => {
+//   setCartProducts(cartProducts.map(item => 
+//     item.id === id ? {...item, count: parseInt(count) }: item
+//   ));
+// };
 
-const handlePrice = (id, price) => {
-  setCartProducts(cartProducts.map(item =>
-    item.id === id ? { ...item, price: parseFloat(price) } : item
-  ));
-};
+// const handlePrice = (id, price) => {
+//   setCartProducts(cartProducts.map(item =>
+//     item.id === id ? { ...item, price: parseFloat(price) } : item
+//   ));
+// };
 
  const calculatetotal = () => {
-  return cartProducts.reduce((total, item) => total + (item.count * item.cartProduct.price), 0);
+  return cartProducts.reduce((total, item) => total + (item.count * item.cartProduct.salePrice ? item.cartProduct.salePrice: item.cartProduct.price), 0);
  };
-  
+ const usersum = ["sum" , calculatetotal()];
+
+ const sumproducts = localStorage.setItem("sumProduct",JSON.stringify(usersum));
+ 
   
   
   
@@ -151,7 +154,6 @@ const handlePrice = (id, price) => {
             <h5>{Item.count}</h5>
             </div>
             <h2>{Item.cartProduct.salePrice ? <div><b>{Item.cartProduct.salePrice} ₾</b><del className="ml-10">{Item.cartProduct.price} ₾</del></div> : <b>{Item.cartProduct.price} ₾</b>}</h2>
-          
            <button onClick={() => {
             deleteCartProduct(Item.id);
             setTimeout(() => {
@@ -169,8 +171,8 @@ const handlePrice = (id, price) => {
             <h1>გადახდა</h1>
             
             <div id="totalprice">
-                <p><b>ჯამური ღირებულება</b></p>
-                <p><b>{calculatetotal()}</b></p>
+                <b>ჯამური ღირებულება:</b>
+                <p><b>{calculatetotal()} ₾</b></p>
             </div>
             <div >
                 <button><b>ყიდვა</b></button>

@@ -78,8 +78,10 @@ h1{
 
 }
 #totalprice{
-    display: flex;
-    justify-content: space-between;
+    p{
+        font-size: 20px;
+        margin-top: 40px;
+    }
     
 }
 div{
@@ -93,7 +95,7 @@ div{
     border-radius: 20px;
     font-size: 16px;
     cursor: pointer;
-    margin-top: 60px;
+    margin-top: 5px;
     transition: 0.4s;
 
 
