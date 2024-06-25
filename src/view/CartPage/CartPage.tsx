@@ -10,7 +10,6 @@ import { Tbuy, Tcartproduct, Cartpage } from "./cartpage.styled";
 
 import {  DeleteOutlined, LoadingOutlined} from '@ant-design/icons';
 
-import { useGetProductsSale } from "@src/hooks/useGetSaleproducts/useGetSaleproducts";
 
 
 
@@ -18,9 +17,6 @@ export function CartPage() {
   const [cartProducts, setCartProducts] = useState<TCartProducts[]>([]);
   const [selectSavedProduct, setSelectSavedProduct] = useState<string[]>([]);
   const [loading, setLoading] = useState<boolean>(false);
-  
-  const {productsSale} =useGetProductsSale();
-
    
   const {
     countCartProducts,
@@ -98,6 +94,31 @@ export function CartPage() {
     }
   }
 
+  //
+
+
+  // const counts = cartProducts.map(item => item.count); 
+
+const handlecount = (id, co) => {
+  setCartProducts(cartProducts.map(item => 
+    item.id === id ? {...item, co: parseInt(co) }: item
+  ));
+};
+
+const handlePrice = (id, price) => {
+  setCartProducts(cartProducts.map(item =>
+    item.id === id ? { ...item, price: parseFloat(price) } : item
+  ));
+};
+
+ const calculatetotal = () => {
+  return cartProducts.reduce((total, item) => total + (item.count * item.cartProduct.price), 0);
+ };
+  
+  
+  
+  
+  
 
 
   useEffect(() => {
@@ -149,7 +170,7 @@ export function CartPage() {
             
             <div id="totalprice">
                 <p><b>ჯამური ღირებულება</b></p>
-                <p><b></b></p>
+                <p><b>{calculatetotal()}</b></p>
             </div>
             <div >
                 <button><b>ყიდვა</b></button>

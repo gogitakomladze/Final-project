@@ -35,6 +35,29 @@ export function Products() {
       };
    return ( 
     <>
+
+    <TProduct >
+       
+        {products?.map((product) => {
+            return (
+
+                <div 
+                key={product.id}
+                onClick={() => {
+                    setProductId(product.id);
+                    navigate(`/products/${product.id}`);
+                    setLoading(true);
+                }}
+                >
+                   <img src={product.image} /> 
+                    {product.salePrice ? <div className="product-sale"><b>{product.salePrice} ₾</b> <del>{product.price}</del>  ₾ </div>: <b className="price">{product.price} ₾</b>}
+                    <h1>{product.title}</h1> 
+                    
+                </div>
+            )
+        })}
+    </TProduct>
+
     <div id="carusel">
         <h4 className="mb-5">ფასდაკლება</h4>
         <Carousel autoplay>
@@ -67,27 +90,6 @@ export function Products() {
   </Carousel>
 
   </div>
-    <TProduct >
-       
-        {products?.map((product) => {
-            return (
-
-                <div 
-                key={product.id}
-                onClick={() => {
-                    setProductId(product.id);
-                    navigate(`/products/${product.id}`);
-                    setLoading(true);
-                }}
-                >
-                   <img src={product.image} /> 
-                    {product.salePrice ? <div className="product-sale"><b>{product.salePrice} ₾</b> <del>{product.price}</del>  ₾ </div>: <b className="price">{product.price} ₾</b>}
-                    <h1>{product.title}</h1> 
-                    
-                </div>
-            )
-        })}
-    </TProduct>
     </>
    );
 }

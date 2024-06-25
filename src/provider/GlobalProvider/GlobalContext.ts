@@ -1,13 +1,13 @@
 import { Dispatch, SetStateAction, createContext } from "react";
 
-import { TCategori, producttype } from "@src/@types/requestTypes"; 
+import { TCartProducts, TCategori, producttype } from "@src/@types/requestTypes"; 
 
 interface TGlobalContext {
     categoriname: TCategori[] | undefined;
     setCategoriName: React.Dispatch<React.SetStateAction<TCategori[] | undefined>>;
     products: producttype[] | undefined;
-    cartproducts: producttype[] | undefined;
-    setCartProducts: React.Dispatch<React.SetStateAction<producttype[] | undefined>>;
+    cartproducts: TCartProducts[] | undefined;
+    setCartProducts: React.Dispatch<React.SetStateAction<TCartProducts[] | undefined>>;
     setProducts: React.Dispatch<React.SetStateAction<producttype[] | undefined>>;
     productsSale: producttype[] | undefined
     setProductsSale: React.Dispatch<React.SetStateAction<producttype[] | undefined>>

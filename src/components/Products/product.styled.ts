@@ -66,6 +66,9 @@ div{
 
 `
 export const Caruseli = styled.div`
+
+
+
 #sale-product-description {
   font-size: 12px;
 width: 70%;

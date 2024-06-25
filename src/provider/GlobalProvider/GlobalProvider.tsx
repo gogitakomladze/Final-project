@@ -1,11 +1,11 @@
-import { TCategori, producttype } from "@src/@types/requestTypes";
+import { TCategori, producttype , TCartProducts} from "@src/@types/requestTypes";
 import { PropsWithChildren, useState } from "react";
 import { GlobalContext } from "./GlobalContext";
 
 export function GlobalProvider({ children }: PropsWithChildren) {
     const [ categoriname, setCategoriName] = useState<TCategori[]>();
     const [products, setProducts] = useState<producttype[]>();
-    const [cartproducts, setCartProducts] = useState<producttype[]>();
+    const [cartproducts, setCartProducts] = useState<TCartProducts[]>();
     const [productsSale, setProductsSale] = useState<producttype[]>();
     const [productCategori, setProductCategori] = useState<producttype[]>();
     const [productId, setProductId] = useState<string>("");
@@ -25,6 +25,8 @@ export function GlobalProvider({ children }: PropsWithChildren) {
         return storedPurchasedItem ? JSON.parse(storedPurchasedItem) : [];
       });  
      const [subtotal, setSubtotal] = useState<number>(0);
+
+
     return (
         <GlobalContext.Provider
         value={{
@@ -33,7 +35,7 @@ export function GlobalProvider({ children }: PropsWithChildren) {
             products,
             setProducts,
             cartproducts,
-            setCartProducts,
+            setCartProducts, 
             productsSale,     
             setProductsSale,
             productCategori,

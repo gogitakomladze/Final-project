@@ -17,7 +17,6 @@ import {HeartOutlined, LoadingOutlined} from '@ant-design/icons';
 
 import { TOneProduct, TshopCard } from "./OneProductPage.styled"
 import { useAuthProvider } from "@src/provider/AuthProvider";
-import { useGetCartProducts } from "@src/hooks/useGetCartProducts/useGetCartProducts";
 export  function OneProductPage() {
     const {
         productId,
@@ -36,7 +35,6 @@ export  function OneProductPage() {
 
     const [oneProduct, setOneProduct] = useState<producttype | null>(null);
 
-    const {cartproducts} = useGetCartProducts();
     const [firstSponsored, setFirstSponsored] = useState<producttype | null>(
         null
       );
