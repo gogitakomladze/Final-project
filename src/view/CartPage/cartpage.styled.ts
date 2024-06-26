@@ -86,6 +86,7 @@ h1{
 }
 div{
     margin-top: 12%;
+    
     button{
     background-color: #b4d984;
     color: black;
